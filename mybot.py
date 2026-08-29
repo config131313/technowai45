@@ -33,7 +33,7 @@ from aiogram.types import (
     Message, 
     CallbackQuery, 
     TelegramObject,
-    ReplyKeyboardMarkup, 
+    ReplyKeyboardMarkup,  
     KeyboardButton, 
     InlineKeyboardMarkup, 
     InlineKeyboardButton,
@@ -48,7 +48,7 @@ load_dotenv()
 # ============================================================
 API_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 ADMIN_ID = int(os.getenv("ADMIN_ID", "0"))
-BOT_USERNAME = os.getenv("BOT_USERNAME", "TechNowAibot")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "TechNowAibot") 
 BUILD_VERSION = "10.27.9-queue-edit-d1-optimized"
 DEFAULT_MAX_WORKERS = 6
 DEFAULT_MAX_AI_WORKERS = 4
@@ -71,7 +71,7 @@ CHANNEL_ID = os.getenv("CHANNEL_ID", "")
 AUTOMATION_ENABLED_DEFAULT = os.getenv("AUTOMATION_ENABLED", "true").lower() in {"1", "true", "yes", "on"}
 DEFAULT_SOURCE_INTERVAL_MINUTES = int(os.getenv("DEFAULT_SOURCE_INTERVAL_MINUTES", "15"))
 DEFAULT_MAX_DAILY_POSTS = int(os.getenv("MAX_DAILY_POSTS", "6"))
-DEFAULT_MIN_CONTENT_SCORE = float(os.getenv("MIN_CONTENT_SCORE", "78"))
+DEFAULT_MIN_CONTENT_SCORE = float(os.getenv("MIN_CONTENT_SCORE", "78")) 
 MANAGER_SCORE_TOLERANCE = float(os.getenv("MANAGER_SCORE_TOLERANCE", "0"))
 DEFAULT_MIN_HOURS_BETWEEN_POSTS = float(os.getenv("MIN_HOURS_BETWEEN_POSTS", "2"))
 DEFAULT_MIN_POST_GAP_MINUTES = max(1, int(round(DEFAULT_MIN_HOURS_BETWEEN_POSTS * 60)))
@@ -104,7 +104,7 @@ HTTP_SESSION: Optional[aiohttp.ClientSession] = None
 SETTINGS_CACHE: Dict[str, Tuple[str, float]] = {}
 SETTINGS_CACHE_TTL = 20.0
 
-async def get_http_session() -> aiohttp.ClientSession:
+async def get_http_session() -> aiohttp.ClientSession: 
     global HTTP_SESSION
     if HTTP_SESSION is None or HTTP_SESSION.closed:
         HTTP_SESSION = aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=HTTP_TIMEOUT_SECONDS))
@@ -137,7 +137,7 @@ class D1Database:
             self.session = aiohttp.ClientSession(timeout=timeout)
 
     async def close(self):
-        if self.session and not self.session.closed:
+        if self.session and not self.session.closed: 
             await self.session.close()
         self.session = None
 
@@ -252,7 +252,7 @@ async def initialize_database(db: D1Database):
         await db.execute("ALTER TABLE users ADD COLUMN last_reset_date TEXT")
     except Exception:
         pass
-
+ 
 
 
 async def migrate_unified_user_interactions(db: D1Database):
